@@ -184,7 +184,7 @@ public class ControllerSecond extends Controller {
             curStage.setOnCloseRequest((we -> setClosed()));
             if (newScene.lookup("#resultLabel") != null) {
                 Label label = (Label) newScene.lookup("#resultLabel");
-                label.setText(String.format("Это Вы с вероятностью %f", 100*trueCounter.doubleValue() / ATTEMPTS) + "%");
+                label.setText(String.format("Это Вы с вероятностью %.2f", 100*trueCounter.doubleValue() / ATTEMPTS) + "%");
             }
         } catch (IOException e) {
             log.debug("Непредвиденная ошибка во время переключения сцен");
