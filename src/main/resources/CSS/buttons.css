@@ -1,0 +1,27 @@
+.next_button {
+    -fx-background-image: url("/IMAGES/right.png");
+    -fx-background-size: 40px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.prev_button {
+    -fx-background-image: url("/IMAGES/left.png");
+    -fx-background-size: 40px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.opened_button {
+    -fx-background-image: url("/IMAGES/opened.png");
+    -fx-background-size: 40px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.photo_button {
+    -fx-background-image: url("/IMAGES/camera.png");
+    -fx-background-size: 40px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
