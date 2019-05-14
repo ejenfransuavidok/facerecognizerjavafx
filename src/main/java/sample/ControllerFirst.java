@@ -16,12 +16,17 @@ import javax.imageio.ImageIO;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lombok.extern.slf4j.Slf4j;
 import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static org.bytedeco.javacpp.opencv_imgproc.CV_BGR2GRAY;
+
+@Slf4j
 public class ControllerFirst extends Controller {
 
     @FXML
@@ -74,6 +79,7 @@ public class ControllerFirst extends Controller {
             Image imageToShow = Utils.mat2Image(frame);
             updateImageView(cameraView, imageToShow);
             if (face != null) {
+                Imgproc.cvtColor(face, face, CV_BGR2GRAY);
                 imageToShow = Utils.mat2Image(face);
                 updateImageView(faceView, imageToShow);
                 Controller.faceRecognition.registerNewMember(Controller.CLIENT, face);
@@ -87,7 +93,7 @@ public class ControllerFirst extends Controller {
         } catch (IOException ex) {
             statusBar.setBackground(StatusBarColors.RED.getBackground());
             statusBar.setText(String.format("Во время загрузки скан-копии произошла непредвиденная ошибка: %s", ex.getMessage()));
-            logger.warning(String.format("Во время загрузки скан-копии произошла непредвиденная ошибка: %s", ex.getMessage()));
+            log.debug(String.format("Во время загрузки скан-копии произошла непредвиденная ошибка: %s", ex.getMessage()));
         }
     }
 
@@ -118,7 +124,7 @@ public class ControllerFirst extends Controller {
             curStage.setTitle(Scenes.SECOND_SCENE.getTitle());
             curStage.setOnCloseRequest((we -> setClosed()));
         } catch (IOException e) {
-            logger.warning("Непредвиденная ошибка во время переключения сцен");
+            log.debug("Непредвиденная ошибка во время переключения сцен");
         }
     }
 

@@ -16,14 +16,6 @@
             <version>2.4.13-0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.mytechia/opencv -->
-        <dependency>
-            <groupId>com.mytechia</groupId>
-            <artifactId>opencv</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-
-
         <!-- https://mvnrepository.com/artifact/com.github.sarxos/webcam-capture -->
         <dependency>
             <groupId>com.github.sarxos</groupId>
@@ -42,13 +34,6 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.5</version>
         </dependency>
-
-
-
-
-
-
-
 
         <dependency>
             <groupId>org.nd4j</groupId>
@@ -104,6 +89,14 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>sample.Main</mainClass>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

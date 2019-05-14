@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Pair;
+import lombok.extern.slf4j.Slf4j;
 import org.opencv.core.*;
 import org.opencv.highgui.VideoCapture;
 import org.opencv.imgproc.Imgproc;
@@ -17,9 +18,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
 
+@Slf4j
 abstract public class Controller {
 
     public static String CLIENT = "Client";
@@ -28,7 +28,6 @@ abstract public class Controller {
 
     public static Map<Integer, Scene> scenesRepository = new ConcurrentHashMap<>();
 
-    final Logger logger;
     // a timer for acquiring the video stream
     protected ScheduledExecutorService timer;
     // the OpenCV object that performs the video capture
@@ -40,12 +39,9 @@ abstract public class Controller {
     protected int absoluteFaceSize;
 
     public Controller() throws IOException {
-        FileHandler handler = new FileHandler("default.log", true);
         this.faceCascade = new CascadeClassifier();
         this.absoluteFaceSize = 0;
         this.faceCascade.load(this.getClass().getClassLoader().getResource("haarcascades/haarcascade_frontalface_alt.xml").getFile());
-        logger = Logger.getLogger(ControllerFirst.class.getName());
-        logger.addHandler(handler);
     }
 
     /**

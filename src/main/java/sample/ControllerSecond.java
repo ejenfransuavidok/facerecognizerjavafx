@@ -14,14 +14,19 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import lombok.extern.slf4j.Slf4j;
 import org.opencv.core.*;
 import org.opencv.highgui.VideoCapture;
+import org.opencv.imgproc.Imgproc;
 
 import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static org.bytedeco.javacpp.opencv_imgproc.CV_BGR2GRAY;
+
+@Slf4j
 public class ControllerSecond extends Controller {
 
     private final Double ATTEMPTS = 100d;
@@ -87,12 +92,13 @@ public class ControllerSecond extends Controller {
                             imageToShow = Utils.mat2Image(frames.getValue());
                             updateImageView(faceView, imageToShow);
                             try {
+                                Imgproc.cvtColor(frames.getValue(), frames.getValue(), CV_BGR2GRAY);
                                 String whoIs = faceRecognition.whoIs(frames.getValue());
                                 if (whoIs.contains(Controller.CLIENT)) {
                                     trueCounter.incrementAndGet();
                                 }
                             } catch (IOException e) {
-                                logger.warning("ошибка во время распознавания");
+                                log.debug("ошибка во время распознавания");
                             }
                         }
                         if (counter.get() == ATTEMPTS) {
@@ -181,7 +187,7 @@ public class ControllerSecond extends Controller {
                 label.setText(String.format("Это Вы с вероятностью %f", 100*trueCounter.doubleValue() / ATTEMPTS) + "%");
             }
         } catch (IOException e) {
-            logger.warning("Непредвиденная ошибка во время переключения сцен");
+            log.debug("Непредвиденная ошибка во время переключения сцен");
         }
     }
 

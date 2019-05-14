@@ -8,9 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+@Slf4j
 public class ControllerThird extends Controller {
 
     @FXML
@@ -47,7 +49,7 @@ public class ControllerThird extends Controller {
             curStage.setScene(newScene);
             curStage.setOnCloseRequest((we -> setClosed()));
         } catch (IOException e) {
-            logger.warning("Непредвиденная ошибка во время переключения сцен");
+            log.debug("Непредвиденная ошибка во время переключения сцен");
         }
     }
 

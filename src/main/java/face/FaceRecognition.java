@@ -1,11 +1,6 @@
 package face;
 
 import lombok.extern.slf4j.Slf4j;
-//import org.bytedeco.javacpp.opencv_core;
-//import org.bytedeco.javacpp.opencv_imgcodecs;
-import org.bytedeco.javacpp.BytePointer;
-import org.bytedeco.javacpp.opencv_core;
-import org.bytedeco.javacpp.opencv_imgcodecs;
 import org.datavec.image.loader.NativeImageLoader;
 import org.deeplearning4j.nn.graph.ComputationGraph;
 import org.deeplearning4j.nn.graph.vertex.GraphVertex;
@@ -16,7 +11,6 @@ import org.nd4j.linalg.indexing.NDArrayIndex;
 import org.opencv.core.Mat;
 import sample.Utils;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +35,6 @@ public class FaceRecognition {
     }
 
     private INDArray read(Mat image) throws IOException {
-        //opencv_core.Mat imread = opencv_imgcodecs.imread(image);
         INDArray indArray = LOADER.asMatrix(Utils.matToBufferedImage(image));
         return transpose(indArray);
     }
