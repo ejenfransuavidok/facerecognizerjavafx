@@ -86,5 +86,3 @@ sample.Main.main() INFO  factory.Nd4jBackend - Loaded [CpuBackend] backend
  sample.Main.main() INFO  executioner.DefaultOpExecutioner - Blas vendor: [MKL]
  sample.Main.main() INFO  graph.ComputationGraph - Starting ComputationGraph with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
  sample.Main.main() INFO  face.FaceRecognition - 
- 
- https://yadi.sk/i/GgVq2FumGj4MvQ
